@@ -54,14 +54,13 @@
   прописан в объекте panelText (вам необходимо определить самостоятельно, что
   общего между данной в html версткой и объектом ниже).
   */
+  const textDiv = document.querySelector('.text')
   document.querySelector('.nav').addEventListener('click', (event) => {
-
     if (event.target.classList.contains('nav-link')) {
       event.currentTarget.querySelector('.active').classList.remove('active');
       event.target.classList.add('active');
-      document.querySelector('#inputDiv').textContent = panelText[event.target.parentNode.dataset.text];
+      textDiv.textContent = panelText[event.target.parentNode.dataset.text];
     }
-
   });
 
   const panelText = {
@@ -77,12 +76,13 @@
   шрифт у текста, никакого резкого увеличения шрифта не должно быть при
   перетаскивании ползунка.
    */
-
-   document.querySelector('input').addEventListener('input', (event)=>{
-      const resDiv = document.querySelector('#inputDiv');
+   const resDiv = document.querySelector('#inputDiv');
+   const input = document.querySelector('input');
+   resDiv.style.fontSize = input.value + 'px';
+   input.addEventListener('input', (event) =>{
       resDiv.style.WebkitTransition = 'font-size .25s';
       resDiv.style.MozTransition = 'font-size .25s';
-      resDiv.style.fontSize = event.target.value+'px';
+      resDiv.style.fontSize = event.target.value + 'px';
    });
 
 
